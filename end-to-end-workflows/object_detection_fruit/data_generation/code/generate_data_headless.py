@@ -37,22 +37,24 @@ import omni.replicator.core as rep
 
 with rep.new_layer():
     # Define paths for the character, the props, the environment and the surface where the assets will be scattered in.
-    CRATE = "omniverse://localhost/NVIDIA/Samples/Marbles/assets/standalone/SM_room_crate_3/SM_room_crate_3.usd"
+    nucleus_server_ip = "192.168.1.201"
+    nucleus_server_ip = "localhost"
+    CRATE = f"omniverse://{nucleus_server_ip}/NVIDIA/Samples/Marbles/assets/standalone/SM_room_crate_3/SM_room_crate_3.usd"
     SURFACE = (
-        "omniverse://localhost/NVIDIA/Assets/Scenes/Templates/Basic/display_riser.usd"
+        f"omniverse://{nucleus_server_ip}/NVIDIA/Assets/Scenes/Templates/Basic/display_riser.usd"
     )
-    ENVS = "omniverse://localhost/NVIDIA/Assets/Scenes/Templates/Interior/ZetCG_ExhibitionHall.usd"
+    ENVS = f"omniverse://{nucleus_server_ip}/NVIDIA/Assets/Scenes/Templates/Interior/ZetCG_ExhibitionHall.usd"
     FRUIT_PROPS = {
-        "apple": "omniverse://localhost/NVIDIA/Assets/ArchVis/Residential/Food/Fruit/Apple.usd",
-        "avocado": "omniverse://localhost/NVIDIA/Assets/ArchVis/Residential/Food/Fruit/Avocado01.usd",
-        "kiwi": "omniverse://localhost/NVIDIA/Assets/ArchVis/Residential/Food/Fruit/Kiwi01.usd",
-        "lime": "omniverse://localhost/NVIDIA/Assets/ArchVis/Residential/Food/Fruit/Lime01.usd",
-        "lychee": "omniverse://localhost/NVIDIA/Assets/ArchVis/Residential/Food/Fruit/Lychee01.usd",
-        "pomegranate": "omniverse://localhost/NVIDIA/Assets/ArchVis/Residential/Food/Fruit/Pomegranate01.usd",
-        "onion": "omniverse://localhost/NVIDIA/Assets/ArchVis/Residential/Food/Vegetables/RedOnion.usd",
-        "strawberry": "omniverse://localhost/NVIDIA/Assets/ArchVis/Residential/Food/Berries/strawberry.usd",
-        "lemon": "omniverse://localhost/NVIDIA/Assets/ArchVis/Residential/Decor/Tchotchkes/Lemon_01.usd",
-        "orange": "omniverse://localhost/NVIDIA/Assets/ArchVis/Residential/Decor/Tchotchkes/Orange_01.usd",
+        "apple": f"omniverse://{nucleus_server_ip}/NVIDIA/Assets/ArchVis/Residential/Food/Fruit/Apple.usd",
+        "avocado": f"omniverse://{nucleus_server_ip}/NVIDIA/Assets/ArchVis/Residential/Food/Fruit/Avocado01.usd",
+        "kiwi": f"omniverse://{nucleus_server_ip}/NVIDIA/Assets/ArchVis/Residential/Food/Fruit/Kiwi01.usd",
+        "lime": f"omniverse://{nucleus_server_ip}/NVIDIA/Assets/ArchVis/Residential/Food/Fruit/Lime01.usd",
+        "lychee": f"omniverse://{nucleus_server_ip}/NVIDIA/Assets/ArchVis/Residential/Food/Fruit/Lychee01.usd",
+        "pomegranate": f"omniverse://{nucleus_server_ip}/NVIDIA/Assets/ArchVis/Residential/Food/Fruit/Pomegranate01.usd",
+        "onion": f"omniverse://{nucleus_server_ip}/NVIDIA/Assets/ArchVis/Residential/Food/Vegetables/RedOnion.usd",
+        "strawberry": f"omniverse://{nucleus_server_ip}/NVIDIA/Assets/ArchVis/Residential/Food/Berries/strawberry.usd",
+        "lemon": f"omniverse://{nucleus_server_ip}/NVIDIA/Assets/ArchVis/Residential/Decor/Tchotchkes/Lemon_01.usd",
+        "orange": f"omniverse://{nucleus_server_ip}/NVIDIA/Assets/ArchVis/Residential/Decor/Tchotchkes/Orange_01.usd",
     }
 
     # Define randomizer function for Base assets. This randomization includes placement and rotation of the assets on the surface.
@@ -69,7 +71,7 @@ with rep.new_layer():
                 scale=rep.distribution.uniform((0.8), (1.2)),
             )
             rep.modify.visibility(
-                rep.distribution.choice([True], [False] * (one_in_n_chance))
+                rep.distribution.choice([True, False], (1, one_in_n_chance))
             )
         return instances.node
 

@@ -1,4 +1,4 @@
-FROM nvcr.io/nvidia/omniverse-replicator:1.4.7-r1
+FROM nvcr.io/nvidia/omniverse-replicator:1.6.3
 
 # install system dependencies
 ARG DEBIAN_FRONTEND=noninteractive

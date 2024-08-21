@@ -11,6 +11,14 @@ services:
       - './models:/opt/models/'
     ports:
       - "8884:8884"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+
   training:
     build: training
     # Access the lab with: http://127.0.0.1:8883/lab?token=nvsecuretoken1
@@ -19,6 +27,14 @@ services:
       - './training/code/:/opt/project/'
     ports:
       - "8883:8883"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+
   data-generation:
     build: data_generation
     # Access the lab with: http://127.0.0.1:8882/lab?token=nvsecuretoken0s
@@ -27,3 +43,10 @@ services:
       - './data_generation/code/:/opt/project/'
     ports:
       - "8882:8882"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
