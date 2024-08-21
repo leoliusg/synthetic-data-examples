@@ -1,4 +1,4 @@
-FROM nvcr.io/nvidia/tritonserver:22.07-py3
+FROM nvcr.io/nvidia/tritonserver:24.07-py3
 
 # install system dependencies
 ARG DEBIAN_FRONTEND=noninteractive
